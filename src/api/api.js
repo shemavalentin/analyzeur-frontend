@@ -21,7 +21,7 @@ export const uploadFile = async (file, options) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:8000/analyze/",
+      "https://backend-analyzeur-1.onrender.com",
       formData,
       {
         headers: { "Content-Type": "multipart/form-data" },
