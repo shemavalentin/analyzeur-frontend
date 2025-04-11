@@ -10,11 +10,21 @@ export const HomeContainer = styled.div`
 `;
 
 export const Section = styled.div`
-  width: 90%;
-  max-width: 800px;
+  width: 100%;
+  max-width: 900px;
   padding: 20px;
   background: white;
   box-shadow: 0px 4px 10px;
   border-radius: 12px;
   text-align: center;
+  overflow-x: hidden;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 10px;
+  }
 `;

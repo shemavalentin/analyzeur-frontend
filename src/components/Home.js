@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import FileUploader from "../components/FileUpload";
+import FileUpload from "../components/FileUpload";
 import AnalysisResults from "../components/AnalysisResults";
 import { HomeContainer, Section } from "../styles/Home.styles";
 
@@ -17,8 +17,8 @@ const Home = () => {
   return (
     <HomeContainer>
       <Section>
-        <h1>MOMO ANALYSIS TOOL</h1>
-        <FileUploader onAnalyze={handleAnalyze} />
+        <h1>MOMO ANALYZEUR</h1>
+        <FileUpload onAnalyze={handleAnalyze} />
         <AnalysisResults
           result={result}
           setResult={setResult}

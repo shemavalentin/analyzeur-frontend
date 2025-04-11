@@ -7,7 +7,6 @@ import {
   TableHead,
   TableRow,
   Paper,
-  TextField,
   InputAdornment,
   IconButton,
 } from "@mui/material";
@@ -16,6 +15,8 @@ import ClearIcon from "@mui/icons-material/Clear";
 import {
   ButtonContainer,
   StyledButton,
+  SearchField,
+  ResultsContainer,
 } from "../styles/AnalysisResults.styles";
 
 // Function to format numbers with a thousand separator
@@ -71,13 +72,9 @@ const AnalysisResults = ({ result, setResult }) => {
     <div>
       <h2>TECHNICAL ANALYSIS REPORT</h2>
 
-      {/* Search Field */}
-      <TextField
-        //type="text"
+      <SearchField
         label="Search"
         variant="outlined"
-        // fullWidth
-        // margin="normal"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
         InputProps={{
@@ -89,70 +86,63 @@ const AnalysisResults = ({ result, setResult }) => {
             </InputAdornment>
           ),
         }}
-        style={{
-          marginTop: "20px",
-          marginBottom: "15px",
-          // padding: "8px",
-          width: "50%",
-          borderRadius: "10px",
-          border: "1px solid #ccc",
-          left: "180px",
-        }}
       />
 
-      {/* Top Senders Table */}
-      <h4>TOP SENDERS</h4>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Sender</TableCell>
-              <TableCell>Sender Name</TableCell>
-              <TableCell>Total Sent</TableCell>
-              <TableCell>Transactions Count</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredSenders.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell>{highlightMatch(row.From || "N/A")}</TableCell>
-                <TableCell>
-                  {highlightMatch(row["From Name"] || "Unknown")}
-                </TableCell>
-                <TableCell> {formatNumber(row.total_sent)} RWF</TableCell>
-                <TableCell>{row.transactions}</TableCell>
+      <ResultsContainer>
+        {/* Top Senders Table */}
+        <h4>TOP SENDERS</h4>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Sender</TableCell>
+                <TableCell>Sender Name</TableCell>
+                <TableCell>Total Sent</TableCell>
+                <TableCell>Transactions Count</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {filteredSenders.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell>{highlightMatch(row.From || "N/A")}</TableCell>
+                  <TableCell>
+                    {highlightMatch(row["From Name"] || "Unknown")}
+                  </TableCell>
+                  <TableCell> {formatNumber(row.total_sent)} RWF</TableCell>
+                  <TableCell>{row.transactions}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
 
-      {/* Top Receivers Table */}
-      <h4>TOP RECEIVERS</h4>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Receiver</TableCell>
-              <TableCell>Receiver Name</TableCell>
-              <TableCell>Total Received</TableCell>
-              <TableCell>Transactions Count</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {filteredReceivers.map((row, index) => (
-              <TableRow key={index}>
-                <TableCell>{highlightMatch(row.To || "N/A")}</TableCell>
-                <TableCell>
-                  {highlightMatch(row["To Name"] || "Unknown")}
-                </TableCell>
-                <TableCell> {formatNumber(row.total_received)} RWF</TableCell>
-                <TableCell>{row.transactions}</TableCell>
+        {/* Top Receivers Table */}
+        <h4>TOP RECEIVERS</h4>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Receiver</TableCell>
+                <TableCell>Receiver Name</TableCell>
+                <TableCell>Total Received</TableCell>
+                <TableCell>Transactions Count</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              {filteredReceivers.map((row, index) => (
+                <TableRow key={index}>
+                  <TableCell>{highlightMatch(row.To || "N/A")}</TableCell>
+                  <TableCell>
+                    {highlightMatch(row["To Name"] || "Unknown")}
+                  </TableCell>
+                  <TableCell> {formatNumber(row.total_received)} RWF</TableCell>
+                  <TableCell>{row.transactions}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </ResultsContainer>
 
       {/* Action Buttons */}
       <ButtonContainer>

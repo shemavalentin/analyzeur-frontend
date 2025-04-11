@@ -4,13 +4,19 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #ffffff;
+  background: #f8f8f8;
   padding: 2rem;
   border-radius: 10px;
-  box-shadow: 0px 4px 10pxrgb (15, 19, 50);
+  box-shadow: 0px 4px 10px rgba(15, 19, 50, 0.5);
   width: 100%;
   max-width: 500px;
   margin: 2rem auto;
+  box-sizing: border-box;
+
+  @media (max-width: 600px) {
+    padding: 1.5rem;
+    margin: auto;
+  }
 `;
 
 export const Input = styled.input`
@@ -31,7 +37,7 @@ export const Input = styled.input`
 export const Button = styled.button`
   background: rgb(6, 40, 75);
   color: #fff;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   padding: 12px 20px;
   border: none;
